@@ -1,0 +1,16 @@
+<section [formGroup]="createWorkerForm">
+    <h1>Add worker</h1>
+    <div>
+        <label for="firstName">First name:</label>
+        <input type="text" name="firstName" id="firstName" formControlName="firstName" placeholder="First name" required>
+    </div>
+    <div>
+        <label for="lastName">Last name:</label>
+        <input type="text" name="lastName" id="lastName" formControlName="lastName" placeholder="Last name">
+    </div>
+    <div>
+        <label for="phoneNumber">Phone number:</label>
+        <input type="text" name="phoneNumber" id="phoneNumber" formControlName="phoneNumber" placeholder="Phone number" required>
+    </div>
+    <button (click)="addWorker()">Add worker</button>
+</section>

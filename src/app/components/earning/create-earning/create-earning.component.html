@@ -1,0 +1,19 @@
+<section [formGroup]="createEarningForm">
+    <h1>Add earning</h1>
+    <div>
+        <label for="totalAmount">Total:</label>
+        <input type="text" id="totalAmount" name="totalAmount" formControlName="totalAmount">
+    </div>
+    <div>
+        <label for="creationDate">Date:</label>
+        <input type="text" name="creationDate" id="creationDate" formControlName="creationDate">
+    </div>
+    <div>
+        <label for="workerId">Worker:</label>
+        <select name="workerId" id="workerId" formControlName="workerId">
+            <option value="">-</option>
+            <option *ngFor="let worker of workers" [value]="worker.id">{{worker.firstName}} {{worker.lastName}} </option>
+        </select>
+    </div>
+    <button (click)="createEarning()">Create earning</button>
+</section>

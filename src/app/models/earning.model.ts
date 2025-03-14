@@ -1,8 +1,10 @@
+import { DocumentData, DocumentReference } from "firebase/firestore";
 import { Worker } from "./worker.model";
 
 export interface Earning{
-    totalAmount:number;
-    createdAt:Date;
+    totalAmount:string;
+    creationDate:any;
     workerId: string;
+    workerRef:DocumentReference<DocumentData>;
     worker?:Worker
 }

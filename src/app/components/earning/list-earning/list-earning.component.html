@@ -1,0 +1,18 @@
+<section>
+    <h2>Earnings</h2>
+    <div *ngIf="!isLoading">
+        <!-- Filters -->
+        <div>
+            <h3>Filter:</h3>
+
+        </div>
+        <!-- Displayed data -->
+        <div *ngFor="let earning of earnings">
+            {{earning.creationDate}} {{earning.totalAmount}} - {{earning.worker?.firstName}}
+        </div>
+    </div>
+    <!-- Loader -->
+    <div *ngIf="isLoading">
+        <p>Loading...</p>
+    </div>
+</section>
