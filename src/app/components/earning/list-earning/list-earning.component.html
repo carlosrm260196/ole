@@ -1,18 +1,55 @@
 <section>
-    <h2>Earnings</h2>
+    <h2 class="text-2xl font-bold mb-4 text-center">Earnings</h2>
     <div *ngIf="!isLoading">
         <!-- Filters -->
-        <div>
-            <h3>Filter:</h3>
-
+        <div [formGroup]="filterForm" class="mb-6 flex flex-wrap gap-4">
+            <div>
+                <label for="workerId">Worker:</label>
+                <select name="workerId" id="workerId" formControlName="workerId"  class="border border-gray-300 p-2 rounded">
+                    <option value="">-</option>
+                    <option *ngFor="let worker of workers" [value]="worker.id">{{worker.firstName}} {{worker.lastName}} </option>
+                </select>
+            </div>
+            <div>
+                <label for="startDate">From:</label>
+                <input type="date" name="startDate"  class="border border-gray-300 p-2 rounded" id="startDate" formControlName="startDate" placeholder="Start date">
+            </div>
+            <div>
+                <label for="endDate">To:</label>
+                <input type="date" name="endDate"  class="border border-gray-300 p-2 rounded" id="endDate" formControlName="endDate" placeholder="End date">
+            </div>
+            <button class="bg-blue-500 text-white px-4 py-2 rounded" (click)="filterEarnings()">Filter</button>
+            <button class="bg-red-500 text-white px-4 py-2 rounded" (click)="clearFilter()">Clear filter</button>
         </div>
         <!-- Displayed data -->
-        <div *ngFor="let earning of earnings">
-            {{earning.creationDate}} {{earning.totalAmount}} - {{earning.worker?.firstName}}
+         <div class="overflow-x-auto" >
+            <table class="min-w-full bg-white">
+                <thead class="bg-gray-800 text-white">
+                    <tr>
+                        <th class="w-1/3 px-4 py-2">Date</th>
+                        <th class="w-1/3 px-4 py-2">Amount</th>
+                        <th class="w-1/3 px-4 py-2">Worker</th>
+                        <!--
+                        It said to display Worker ID but i think its easier to display thw workers full name
+                         <th class=" px-4 py-2">Worker ID</th>
+                        -->
+                    </tr>
+                </thead>
+                <tbody class="text-gray-700">
+                    <tr *ngFor="let earning of earnings" class="border-b ">
+                        <td class="px-4 py-2 text-center">{{earning.creationDate | date}}</td>
+                        <td class="px-4 py-2 text-center">{{earning.totalAmount | currency}}</td>
+                        <td class="px-4 py-2 text-center">{{earning.worker?.firstName}} {{earning.worker?.lastName}}</td>
+                        <!-- <td class="px-4 py-2">{{earning.workerId}}</td> -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="mt-4">
+            <h3 class="text-xl font-semibold">Total Earnings: {{totalEarnings | currency}}</h3>
         </div>
     </div>
     <!-- Loader -->
-    <div *ngIf="isLoading">
-        <p>Loading...</p>
-    </div>
+    <loader *ngIf="isLoading"/>
+        
 </section>

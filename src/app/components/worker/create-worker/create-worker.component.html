@@ -1,16 +1,26 @@
-<section [formGroup]="createWorkerForm">
-    <h1>Add worker</h1>
-    <div>
-        <label for="firstName">First name:</label>
-        <input type="text" name="firstName" id="firstName" formControlName="firstName" placeholder="First name" required>
+<h2 class="text-2xl font-bold mb-4 text-center">Add worker</h2>
+
+<section *ngIf="!isLoading" class="max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" [formGroup]="createWorkerForm">
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="firstName">First name:</label>
+        
+        <input type="text" name="firstName" id="firstName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" formControlName="firstName" placeholder="First name" required>
     </div>
-    <div>
-        <label for="lastName">Last name:</label>
-        <input type="text" name="lastName" id="lastName" formControlName="lastName" placeholder="Last name">
+    <div class="mb-4">
+        <label for="lastName" class="block text-gray-700 text-sm font-bold mb-2" >Last name:</label>
+        <input type="text" name="lastName" id="lastName"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+        formControlName="lastName" placeholder="Last name">
     </div>
-    <div>
-        <label for="phoneNumber">Phone number:</label>
-        <input type="text" name="phoneNumber" id="phoneNumber" formControlName="phoneNumber" placeholder="Phone number" required>
+    <div class="mb-4">
+        <label for="phoneNumber" class="block text-gray-700 text-sm font-bold mb-2" >Phone number:</label>
+        <input type="text" name="phoneNumber" id="phoneNumber" 
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        formControlName="phoneNumber" placeholder="Phone number" required maxlength="10">
     </div>
-    <button (click)="addWorker()">Add worker</button>
+    <div class="flex items-center justify-center">
+        <button (click)="addWorker()"  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Add worker</button>
+
+    </div>
 </section>
+<loader *ngIf="isLoading" />

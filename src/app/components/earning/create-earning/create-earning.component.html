@@ -1,19 +1,29 @@
-<section [formGroup]="createEarningForm">
-    <h1>Add earning</h1>
-    <div>
-        <label for="totalAmount">Total:</label>
-        <input type="text" id="totalAmount" name="totalAmount" formControlName="totalAmount">
+<h2 class="text-2xl font-bold mb-4 text-center">Add earning</h2>
+<section *ngIf="!isLoading" class="max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" [formGroup]="createEarningForm">
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="totalAmount">Total:</label>
+        <input type="number" 
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+        id="totalAmount" name="totalAmount" formControlName="totalAmount" placeholder="0.0">
     </div>
-    <div>
-        <label for="creationDate">Date:</label>
-        <input type="text" name="creationDate" id="creationDate" formControlName="creationDate">
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="creationDate">Date:</label>
+        <input type="date" name="creationDate" id="creationDate" 
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+        formControlName="creationDate">
     </div>
-    <div>
-        <label for="workerId">Worker:</label>
-        <select name="workerId" id="workerId" formControlName="workerId">
-            <option value="">-</option>
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="workerId">Worker:</label>
+        <select name="workerId" id="workerId"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+         formControlName="workerId">
+            <option value="">Select a worker</option>
             <option *ngFor="let worker of workers" [value]="worker.id">{{worker.firstName}} {{worker.lastName}} </option>
         </select>
     </div>
-    <button (click)="createEarning()">Create earning</button>
+    <div class="flex items-center justify-center">
+        <button (click)="createEarning()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Create earning</button>
+    </div>
+    
 </section>
+<loader *ngIf="isLoading"/>
